@@ -5,61 +5,54 @@
 		<title>Johannes S - Index</title>
 
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	</head>
 	<body>
-	<div class="text-center">
 		<div class="banner">
 			<nav>
 				<ul>
 					<li class="left">JSundqvist <br /> Development</li>
-					<a href="index.php#home"><li><i class="fa fa-home"></i> <br / >Home</li></a>
-					<a href="index.php#about"><li><i class="fa fa-info"></i> <br /> About me</li></a>
-					<a href="index.php#projects"><li><i class="fa fa-book"></i> <br /> Projects</li></a>
+					<a href="#home"><li><i class="fa fa-home"></i> <br / >Home</li></a>
+					<a href="#about"><li><i class="fa fa-info"></i> <br /> About me</li></a>
+					<a href="#repos"><li><i class="fa fa-book"></i> <br /> Repositories</li></a>
 				</ul>
 			</nav>
-
 			<h2>Welcome</h2>
 			<h4>To JSundqvist Development!</h4>
 			<hr />
 			</div>
+			<div class="container">
+				<h3 id="about">About me</h3>
+				<p>Hi! My name is Johannes Sundqvist, a human from 1997 currently living in Finland. As of typing this, I am currently studying and aspiring to become a IT-Engineer, and in a few years, I'd hope I am working as a (web) developer at some amazing firm. That is all for now, folks! </p>
+				<br />
 
+				<hr /> <h3 id="repos">Check out my Github Repositories</h3> <br />
+				<p class="projects_subtext"><i>Fun fact: It auto-updates! Check out the source code to find out how!</i></p> <br />
 
-			<h3 id="about">About me</h3>
-			<p>I am an IT student from Finland, with a passion for programming and gaming. I've loved both since I started with it many years ago, and I plan to keep doing it in the future. I will be trying to keep this site up to date with new functions and things appearing, so remember to check back every so often! </p>
+				<div id="repositoryContainer"></div>
+				<script type="text/javascript">
+	          $.get("https://api.github.com/users/JohannesSundqvist/repos", function(r) {
+								var html = "<div class='row'>";
 
-			<br />
+	              for(var i = 0; i < r.length; i++) {
+										var obj = r[i];
+										
+										html += "<div class='column'>";
+										html += "<a href='" + obj['html_url'] + "'>";
+										html += "<h2>" + obj["name"].toUpperCase() + "</h2>";
+										html += "</a>";
+										html += "</div>";
+	              }
 
+								html += "</div>";
 
-			<hr /> <h3 id="projects">Public projects</h3> <br />
-			<div class="row">
-
-				<div class="col-md-4">
-					<i class="fa fa-paint-brush fa-lg"></i>
-					<h2>Style By Me</h2>
-					<p><b>ONLINE</b></p>
-					<p>Site made for a hair dresser studio in Jakobstad, Finland. <a href="http://stylebyme.fi"><b>View here!</b></a></p>
-				</div>
-				<div class="col-md-4">
-					<i class="fa fa-book fa-lg"></i>
-					<h2>Newsletter</h2>
-					<p><b>OFFLINE</b></p>
-					<p>Site made for a school project, bringing up a few news articles from the time of development. <a href="http://jsundqvist.optipoint.fi/news"><b>View here!</b></a></p>
-				</div>
-				<div class="col-md-4">
-					<i class="fa fa-film fa-lg"></i>
-					<h2>Entertainment Database</h2>
-					<p><b>OFFLINE</b></p>
-					<p>Site made for finding random movies and other kinds of content to watch & enjoy.</p>
-				</div>
+								document.getElementById("repositoryContainer").outerHTML = html;
+	          });
+	      </script>
 			</div>
 			<hr /> <br />
 		</div>
-
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="js/site.js"> </script>
 	</body>
 </html>
